@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>降薪维权互动指南</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* 核心样式 */
+    .step {
+      display: none;
+      min-height: 80vh;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .step.active {
+      opacity: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* 文字放大 */
+    .step-content {
+      max-width: 800px;
+      text-align: center;
+      padding: 2rem;
+    }
+    .step-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+    .step-content p {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #34495e;
+    }
+
+    .step-content .email-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    /* 按钮交互 */
+    .btn-option {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      margin: 1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+    .btn-option:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* 导航箭头 */
+    .nav-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .nav-arrow:hover {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.2);
+    }
+    #arrow-prev { left: 2rem; }
+    #arrow-next { right: 2rem; }
+
+    /* 进度条美化 */
+    .progress {
+      height: 8px;
+      border-radius: 4px;
+      background: #ecf0f1;
+    }
+    .progress-bar {
+      background: #3498db;
+      border-radius: 4px;
+    }
+
+    /* 法律条款悬浮效果 */
+    .law-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      transition: transform 0.3s ease;
+    }
+    .law-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(52, 152, 219, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航箭头 -->
+  <div class="nav-arrow" id="arrow-prev"><</div>
+  <div class="nav-arrow" id="arrow-next">></div>
+
+  <!-- 进度条 -->
+  <div class="container mt-4">
+    <div class="progress">
+      <div class="progress-bar" role="progressbar"></div>
+    </div>
+  </div>
+
+  <!-- 内容容器 -->
+  <div class="container py-5" id="app">
+    <!-- Step 1 -->
+    <div class="step active" data-step="1">
+      <div class="step-content">
+        <h2>📉 突如其来的降薪通知</h2>
+        <p class="lead">"这个月的薪水突然迟发减半，公司只说经营困难"</p>
+        <div class="options mt-4">
+          <button class="btn btn-lg btn-outline-primary btn-option" data-next="2">默默接受</button>
+          <button class="btn btn-lg btn-primary btn-option" data-next="2">我要拿回属于我的钱！</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="2">
+    <div class="step-content">
+        <h2>⚠ 第一时间写抗议邮件！</h2>
+        <details>
+            <p class="lead">如果不表示异议，就会被视为默许，后续无法维权。</p>
+            <summary class="lead email-title">降薪异议告知书</summary>
+            <p class="lead" style="text-align: left;">
+                贵公司于xx 年xx月未经本人同意，对本人实施降薪。该降薪行为因无任何法律依据，本人不予认可。请贵公司收到本通知后将本人薪资恢复至原薪资标准。<br/>
+                贵公司未经本人书面同意对本人按照降薪后标准实施工资发放行为的，不视为本人对降薪后薪资标准的认可。 <br/>
+                本告知书所体现的意思表示，不因本人是否与贵公司解除或者终止劳动合同而发生变化。<br/>
+                本人将保留《劳动法》所赋予的仲裁、起诉等合法维权权利。
+            </p>
+        </details>
+        <div class="options mt-4">
+            <button class="btn btn-lg btn-outline-primary btn-option" data-next="3">发送到...</button>
+        </div>
+    </div>
+    </div>
+
+    <div class="step" data-step="2">
+    <div class="step-content">
+        <h2>🏢 公司是否有工会、职工代表大会等组织，而且代表投票通过了降薪决议？</h2>
+        <p class="lead">"只要工会等职工组织形式上通过了降薪决议，仲裁时一般就视为公司员工全部知情同意,对维权不利。"</p>
+        <div class="options mt-4">
+            <button class="btn btn-lg btn-primary btn-option" data-next="3">是</button>
+            <button class="btn btn-lg btn-primary btn-option" data-next="3">否</button>
+        </div>
+    </div>
+    </div>
+    
+    
+    <!-- Step 2 -->
+    <div class="step" data-step="3">
+      <div class="step-content">
+        <h2>⚖️ 法律武器库</h2>
+        <div class="law-card">
+          <h3>《劳动合同法》第35条</h3>
+          <p>用人单位与劳动者协商一致，可以变更劳动合同约定的内容...</p>
+        </div>
+        <div class="options mt-4">
+          <button class="btn btn-lg btn-primary btn-option" data-next="3">继续维权</button>
+          <button class="btn btn-lg btn-secondary btn-option" onclick="showStep(1)">返回上步</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 更多步骤... -->
+  </div>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 状态管理
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.querySelector(`[data-step="${step}"]`).classList.add('active');
+      updateProgress(step);
+      currentStep = step;
+    }
+
+    function updateProgress(step) {
+      const percent = (step / totalSteps) * 100;
+      document.querySelector('.progress-bar').style.width = `${percent}%`;
+    }
+
+    // 按钮事件
+    document.querySelectorAll('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => showStep(parseInt(btn.dataset.next)));
+    });
+
+    // 键盘导航
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' && currentStep > 1) showStep(currentStep - 1);
+      if (e.key === 'ArrowRight' && currentStep < totalSteps) showStep(currentStep + 1);
+    });
+
+    // 箭头点击事件
+    document.getElementById('arrow-prev').addEventListener('click', () => {
+      if (currentStep > 1) showStep(currentStep - 1);
+    });
+    document.getElementById('arrow-next').addEventListener('click', () => {
+      if (currentStep < totalSteps) showStep(currentStep + 1);
+    });
+  </script>
+</body>
+</html>
